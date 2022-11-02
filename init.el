@@ -129,9 +129,19 @@
 (require 'init-dash)
 
 ;;(require 'init-twitter)
-;; (require 'init-mu)
+;;(require 'init-mu)
 (require 'init-ledger)
 ;; Extra packages which don't require any configuration
+
+(use-package clipetty
+  :ensure t
+  :bind ("M-w" . clipetty-kill-ring-save))
+
+(use-package lsp-mode :commands lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
 (require-package 'sudo-edit)
 (require-package 'gnuplot)
